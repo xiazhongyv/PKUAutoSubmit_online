@@ -52,7 +52,9 @@
 
 ## 如何取消自动报备
 
-你可以直接删除你fork的仓库
+Settings -> Actions -> Disabled Actions
+    
+也可以直接删除你fork的仓库
 
 也可以删除./github/workflows
 
