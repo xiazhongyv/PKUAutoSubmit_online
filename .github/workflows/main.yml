@@ -4,9 +4,9 @@ name: selenium
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -32,5 +32,7 @@ jobs:
         run: pip install selenium
       - name: 'Working'
         run: |
-          sudo chmod -R 777 ./chromedriver/bin/chromedriver
+          sudo cp -p ./chromedriver/bin/chromedriver /usr/bin/
+          chmod -R 777 /usr/bin/chromedriver
           python main.py
+          
