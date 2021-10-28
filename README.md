@@ -31,7 +31,7 @@
 
 secret是github的保密字段，在这里填写的内容，在填写后没人能够看到它是什么，包括你自己，你只能修改它。
 
-6. 然后在【你的ID/PKUActionSubmit】下面那一栏里找到 Actions，点进去，
+6.然后在【你的ID/PKUActionSubmit】下面那一栏里找到 Actions，点进去，
 
 可能会弹出提示框，点击“Enable...”允许脚本运行，
 
