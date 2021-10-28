@@ -4,6 +4,8 @@
 
 萌新友好的自动出入校备案程序！
 
+祝大家科研和学业顺利，也祝大家身体健康！
+
 ## 说明
 
 本项目基于[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)3.0版本开发，因此跟随使用了[Apache License 2.0](https://github.com/xiazhongyv/PKUActionSubmit/blob/master/LICENSE)证书
