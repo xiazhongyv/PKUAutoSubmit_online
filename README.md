@@ -25,17 +25,13 @@
 
 5. 然后在【你的ID/PKUActionSubmit】下面那一栏里找到 Settings ，点击，在左侧找到Secrets，点击
 
+<br><br>点击右侧New Repository secret，然后添加ID（大写的），然后输入你的学号
 
-  点击右侧New Repository secret，然后添加ID（大写的），然后输入你的学号
+<br><br>再点击右侧New Repository secret，然后添加PASSWORD（大写的），然后输入你的密码
 
+<br><br>再点击右侧New Repository secret，然后添加SENDKEY（大写的），然后输入你的SENDKEY（如果你不需要微信通知，就随便写点啥都行）
 
-  再点击右侧New Repository secret，然后添加PASSWORD（大写的），然后输入你的密码
-
-
-  再点击右侧New Repository secret，然后添加SENDKEY（大写的），然后输入你的SENDKEY（如果你不需要微信通知，就随便写点啥都行）
-
-
-  secret是github的保密字段，在这里填写的内容，在填写后没人能够看到它是什么，包括你自己，你只能修改它。
+<br><br><font size=5>*secret是github的保密字段，在这里填写的内容，在填写后没人能够看到它是什么，包括你自己，你只能修改它。*
 
 
 6. 然后在【你的ID/PKUActionSubmit】下面那一栏里找到 Actions，点进去，
