@@ -37,5 +37,5 @@ jobs:
           sudo cp -p ./chromedriver/bin/chromedriver /usr/bin/
           chmod -R 777 /usr/bin/chromedriver
           chmod -R 777 ./chromedriver/bin/chromedriver
-          python main.py --ID 1800013081 --PASSWORD ${{PASSWORD}} --SENDKEY ${{SENDKEY}}
+          python main.py --ID ${{secrets.ID}} --PASSWORD ${{secrets.PASSWORD}} --SENDKEY ${{secrets.SENDKEY}}
           
