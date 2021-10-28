@@ -8,9 +8,9 @@
 
 ## 说明
 
-本项目基于[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)3.0版本开发，因此跟随使用了[Apache License 2.0](https://github.com/xiazhongyv/PKUActionSubmit/blob/master/LICENSE)证书
+本项目基于[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)3.0版本开发，因此跟随使用了[Apache License 2.0](https://github.com/xiazhongyv/PKUActionSubmit/blob/master/LICENSE)证书。在[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)对代码略有改动，主要是更改了门户页面的click方法（可能会报错），以及将部分输入由Actions Secrets参数输入。
 
-并且提供了Github Actions支持，所以现在你无需下载任何文件到你自己的电脑或者服务器，更不需要时刻都开着电脑了。
+本项目提供了Github Actions支持，所以现在你只需要在网页端点点鼠标，无需下载任何文件到你自己的电脑或者服务器，更不需要时刻都开着电脑了。
 
 本项目建立于2021/10/28
 
