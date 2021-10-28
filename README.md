@@ -5,7 +5,7 @@
 自动出入校备案程序！
 
 ## 说明
-本项目基于[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)3.0版本开发，因此跟随使用了Apache License 2.0证书
+本项目基于[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)3.0版本开发，因此跟随使用了[Apache License 2.0](https://github.com/xiazhongyv/PKUActionSubmit/blob/master/LICENSE)证书
 
 并且提供了Github Action支持，所以现在你无需下载任何文件到你自己的电脑或者服务器，更不需要时刻都开着电脑了。
 
@@ -56,3 +56,8 @@ secret是github的保密字段，在这里填写的内容，在填写后没人�
 
 Q：Github Action 报错，IAAA登录失败
 A：请手动登录下门户，检查下是否会弹出人脸验证授权，这个授权页面会干扰程序运行，它只会在门户显示一次，处理后重新运行就好了。如果还不行请重新设置下Secrets的账户密码。如果还不行请把报错信息提交到issues.
+
+## 免责声明
+本代码只供参考学习，造成的一切后果由使用者自行承担。
+本品的开发初衷是拯救需要每天出入校的科研党，利人利己，欢迎大家扩散。如果有任何问题或警告，我会立即删除该项目。
+
