@@ -61,7 +61,7 @@ Settings -> Actions -> Disabled Actions
 也可以编辑./github/workflows/main.yml, 在Line5 Line6前面加个“#”号，注释掉它们
 
 ## Q&A
-如果你有什么问题，可以在【你的ID/PKUActionSubmit】下面那一栏里找到 Issues，提交你的问题
+如果你有什么问题，可以在【xiazhongyv/PKUActionSubmit】下面那一栏里找到 Issues，提交你的问题
 
 Q：Github Action 报错，IAAA登录失败
 
