@@ -1,4 +1,4 @@
-name: selenium
+name: PKUAutoSubmit
 
 # Controls when the action will run. 
 on:
