@@ -1,4 +1,4 @@
-# AutoSubmit
+# PKUAutoSubmit Github Actions版
 
 无需代码基础，无需下载文件到你的电脑，无需保持自己电脑开机，无需配置服务器和环境的
 
