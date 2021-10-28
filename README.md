@@ -8,7 +8,7 @@
 
 本项目基于[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)3.0版本开发，因此跟随使用了[Apache License 2.0](https://github.com/xiazhongyv/PKUActionSubmit/blob/master/LICENSE)证书
 
-并且提供了Github Action支持，所以现在你无需下载任何文件到你自己的电脑或者服务器，更不需要时刻都开着电脑了。
+并且提供了Github Actions支持，所以现在你无需下载任何文件到你自己的电脑或者服务器，更不需要时刻都开着电脑了。
 
 ## 如何使用
 
