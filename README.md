@@ -53,6 +53,13 @@
 
     这个时候，脚本应该已经可以在每天中午十二点都运行一次了，但是推荐手动测试一下，手动测试点击右侧的“Run workflow” - “Run workflow”就可以手动运行一次了。
 
+## 如何修改自动报备的频率
+    
+通过修改.github/workflows/main.yml Line 6的corn表达式来实现。
+    
+默认值是 '0 4 * * *'，这表示每天UTC 4:00，即北京时间中午12点，执行出校和入校报备各一次。
+    
+可以通过编辑单引号内的五个字段来改变报备频率，这五个字段，比如 '0 0,2 * * 1,2,3,4,5' 表示周一到周五的北京时间八点和十点执行。有关corn表达式的更多信息，可以自行利用搜索引擎搜索。
 
 ## 如何取消自动报备
 
@@ -63,13 +70,24 @@ Settings -> Actions -> Disabled Actions
 也可以删除./github/workflows
 
 也可以编辑./github/workflows/main.yml, 在Line5 Line6前面加个“#”号，注释掉它们
-
+    
 ## Q&A
 如果你有什么问题，可以在【xiazhongyv/PKUActionSubmit】下面那一栏里找到 Issues，提交你的问题
 
-Q：Github Action 报错，IAAA登录失败
+Q：报错，IAAA登录失败
 
 A：请手动登录下门户，检查下是否会弹出人脸验证授权，这个授权页面会干扰程序运行，它只会在门户显示一次，处理后重新运行就好了。如果还不行请重新设置下Secrets的账户密码。如果还不行请把报错信息提交到issues.
+    
+
+Q：报错，缺失ID/PASSWORD/SENDKEY参数
+    
+A：要在repo的Setting - Secrets里设置这三个值哦，点进New Repository secret会有两栏，KEY填写全大写的字母ID或PASSWORD或SENDKEY，value填写具体的内容。
+    
+    
+Q：报错，超时错误
+    
+A：目前我查看了一些fork repo的actions，以及接收到了一些反馈，目前大多数账号是可以反复运行并保证报备成功的，有少部分账号会偶发甚至持续出现超时报错，目前正在排查原因。
+
 
 ## 免责声明
 本代码只供参考学习，造成的一切后果由使用者自行承担。
