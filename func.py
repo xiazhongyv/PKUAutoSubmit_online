@@ -294,7 +294,7 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
         wechat_notification(userName, sckey)
         print('=================================')
 
-    print('可以愉快的玩耍啦！\n')
+    print('报备成功！\n')
 
 
 if __name__ == '__main__':
