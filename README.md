@@ -34,7 +34,7 @@
 
     点击右侧New Repository secret，然后添加 ID（大写的），然后输入你的学号
 
-    再点击右侧New Repository secret，然后添加 PASSWORD（大写的），然后输入你的密码
+    再点击右侧New Repository secret，然后添加 PASSWORD（大写的），然后输入你的密码。【如果你的密码里有特殊字符如()/\, 请用双引号将你的密码包裹起来，即在value一栏输入："yourpassword"】
 
     再点击右侧New Repository secret，然后添加 MAIL_ADDRESS（大写的），然后输入你的电子邮箱地址
 
@@ -92,15 +92,23 @@ A：目前我查看了一些fork repo的actions，以及接收到了一些反馈
 AA：排查了半天，没找到问题，感觉就是报备网站不稳定，可能要改成每天上下午各运行一次要好一些？
     
 AAA: 感谢Xzonn大佬的PR，超时有可能是因为有的同学没有默认的邮箱和手机号，导致“提交”按钮处于不可点击的状态。现在已经更新了，请无法运行的大家Fetch upstream或重新Fork试一下~
+  
+    
+Q: 报错，xxxxxxx.sh: line 4: syntax error near unexpected token xx 语法错误
+    
+A：请在Secrets填写你的密码时双引号包裹起你的密码，报这个语法错误是因为你的Secrets里有特殊字符
+    
     
 Q：Actions workflow没有按时运行/我没有在指定的时间收到微信提醒
 
 A：Github Actions由于是免费资源，本身资源有限，所以实际上workflow是在指定的时间开始排队。报备这种事晚个几分钟十几分钟问题不大。不过如果想要准点收到报备成功信息，一个比较好的策略是避开整点半点时间。如果workflow完全没有按照计划运行，请提交issue.
     
+    
 Q：workflow运行不了，按钮是不可点击状态
 
 A：找一找页面上有没有关于是否允许脚本在fork的仓库上运行的提示，点击“Enable...”就好
 
+    
 ## 免责声明
 本代码只供参考学习，造成的一切后果由使用者自行承担。
 
