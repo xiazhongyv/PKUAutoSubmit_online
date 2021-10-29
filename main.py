@@ -48,10 +48,6 @@ if __name__ == '__main__':
     parser.add_argument('--SENDKEY', type=str)
     argconf = parser.parse_args()
 
-    # driver_pjs = webdriver.PhantomJS(
-    #     executable_path=sys_path(browser="phantomjs"),
-    #     service_args=['--ignore-ssl-errors=true', '--ssl-protocol=TLSv1'])
-
     chrome_options = Options()
     chrome_options.add_argument("--headless")
     driver_pjs = webdriver.Edge(
