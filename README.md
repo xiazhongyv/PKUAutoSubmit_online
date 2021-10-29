@@ -36,6 +36,10 @@
 
     再点击右侧New Repository secret，然后添加 PASSWORD（大写的），然后输入你的密码
 
+    再点击右侧New Repository secret，然后添加 MAIL_ADDRESS（大写的），然后输入你的电子邮箱地址
+
+    再点击右侧New Repository secret，然后添加 PHONE_NUMBER（大写的），然后输入你的手机号码
+
     再点击右侧New Repository secret，然后添加 SENDKEY（大写的），然后输入你的SENDKEY（如果你不需要微信通知，就随便写点啥都行）
 
     <font size=5>*secret是github的保密字段，在这里填写的内容，在填写后没人能够看到它是什么，包括你自己，你只能修改它。*
