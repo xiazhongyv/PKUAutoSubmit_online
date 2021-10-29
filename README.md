@@ -94,7 +94,7 @@ AA：排查了半天，没找到问题，感觉就是报备网站不稳定，可
 AAA: 感谢Xzonn大佬的PR，超时有可能是因为有的同学没有默认的邮箱和手机号，导致“提交”按钮处于不可点击的状态。现在已经更新了，请无法运行的大家Fetch upstream或重新Fork试一下~
   
     
-Q: 报错，xxxxxxx.sh: line 4: syntax error near unexpected token xx 语法错误
+Q：报错，xxxxxxx.sh: line 4: syntax error near unexpected token xx 语法错误
     
 A：请在Secrets填写你的密码时双引号包裹起你的密码，报这个语法错误是因为你的Secrets里有特殊字符
     
