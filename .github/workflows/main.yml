@@ -1,38 +1,35 @@
 name: PKUAutoSubmit
 
-# Controls when the action will run. 
 on:
   schedule:
     - cron: '0 4 * * *'
-  # Allows you to run this workflow manually from the Actions tab
+    
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+
       - name: Checkout
         uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
+        
       - name: 'Set up Python'
         uses: actions/setup-python@v1
         with:
            python-version: 3.7
+           
       - name: 'Install requirements'
         run: pip install selenium
+        
       - name: 'Working'
         run: |
           sudo cp -p ./chromedriver/bin/chromedriver /usr/bin/
           chmod -R 777 /usr/bin/chromedriver
           chmod -R 777 ./chromedriver/bin/chromedriver
           python main.py --ID ${{secrets.ID}} --PASSWORD ${{secrets.PASSWORD}} --MAIL_ADDRESS ${{secrets.MAIL_ADDRESS}} --PHONE_NUMBER ${{secrets.PHONE_NUMBER}} --SENDKEY ${{secrets.SENDKEY}}
+          
       - name: 'Save screenshot'
         run: |
           TODAY=$(date +"%F")
