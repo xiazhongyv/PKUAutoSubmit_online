@@ -77,12 +77,12 @@ Settings -> Actions -> Disabled Actions
 
 Q：报错，IAAA登录失败
 
-A：请手动登录下门户，检查下是否会弹出人脸验证授权，这个授权页面会干扰程序运行，它只会在门户显示一次，处理后重新运行就好了。如果还不行请重新设置下Secrets的账户密码。如果还不行请把报错信息提交到issues.
+A：请手动登录下门户，检查下是否会弹出人脸验证授权，这个授权页面会干扰程序运行，它只会在门户显示一次，处理后重新运行就好了。以及还有可能是微信扫码关注门户的页面，只要微信扫码关注了，就不会再弹出这个二维码页面了。如果还不行请重新设置下Secrets的账户密码确保没有输入错误。如果还不行请把报错信息提交到issues.
     
 
-Q：报错，缺失ID/PASSWORD/SENDKEY参数
+Q：报错，缺失ID/PASSWORD/SENDKEY等参数
     
-A：要在repo的Setting - Secrets里设置这三个值哦，点进New Repository secret会有两栏，KEY填写全大写的字母ID或PASSWORD或SENDKEY，value填写具体的内容。
+A：要在repo的Setting - Secrets里设置这几个值哦，点进New Repository secret会有两栏，KEY填写全大写的字母ID或PASSWORD或SENDKEY或其他，value填写具体的内容。
     
     
 Q：报错，超时错误
