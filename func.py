@@ -199,7 +199,7 @@ def fill_out(driver, campus, mail_address, phone_number, reason, detail, destina
     print('Done')
     
     print('填写出入校事由详细描述    ', end='')
-    write_reason(driver, detail)
+    write_reason_detail(driver, detail)
     print('Done')
 
     print('选择出校目的地    ', end='')
@@ -240,7 +240,7 @@ def fill_in(driver, campus, mail_address, phone_number, reason, detail, habitati
     print('Done')
     
     print('填写出入校事由详细描述    ', end='')
-    write_reason(driver, detail)
+    write_reason_detail(driver, detail)
     print('Done')
 
     if habitation != '北京':
