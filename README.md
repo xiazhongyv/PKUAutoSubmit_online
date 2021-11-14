@@ -6,7 +6,7 @@
 
 祝大家科研和学业顺利，也祝大家身体健康！
 
-【重要：如果你是Fetch and merge upstream了本仓库，更新之后请务必不要忘记改config.ini以及workflow下的corn表达式！！】
+【重要：如果你是Fetch and merge upstream了新版本，更新之后请务必不要忘记改config.ini以及workflow下的corn表达式！！】
 
 ## 说明
 
