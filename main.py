@@ -27,14 +27,14 @@ def go(config):
     conf = ConfigParser()
     conf.read(config, encoding='utf8')
 
-    campus, reason = dict(conf['common']).values()
+    campus, reason, detail = dict(conf['common']).values()
     destination, track = dict(conf['out']).values()
     habitation, district, street = dict(conf['in']).values()
     capture = conf.getboolean('capture', '是否需要备案历史截图')
     path = conf['capture']['截图保存路径']
     wechat = conf.getboolean('wechat', '是否需要微信通知')
 
-    run(driver_pjs, argconf.ID, argconf.PASSWORD, campus, argconf.MAIL_ADDRESS, argconf.PHONE_NUMBER, reason, destination, track,
+    run(driver_pjs, argconf.ID, argconf.PASSWORD, campus, argconf.MAIL_ADDRESS, argconf.PHONE_NUMBER, reason, detail, destination, track,
         habitation, district, street, capture, path, wechat, argconf.SENDKEY)
 
 

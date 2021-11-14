@@ -6,9 +6,13 @@
 
 祝大家科研和学业顺利，也祝大家身体健康！
 
+【11.14更新：报备系统今日更新，原来的程序无法正常运行，请Fetch and merge upstream最新版本或者重新fork最新版本】
+
+【重要提醒：如果你是Fetch and merge upstream了新版本，更新之后请务必不要忘记改config.ini以及workflow下的corn表达式！！】
+
 ## 说明
 
-本项目基于[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)3.0版本开发，因此跟随使用了[Apache License 2.0](https://github.com/xiazhongyv/PKUActionSubmit/blob/master/LICENSE)证书。在[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)的基础上对代码略有改动，主要是更改了门户页面的click方法（规避可能的报错），修复了因为缺失默认联系方式引起的报错，修复了密码包含特殊字符的问题，以及将部分输入由Actions Secrets参数输入（保证账户的安全性）。
+本项目基于[PKUAutoSubmit](https://github.com/Bruuuuuuce/PKUAutoSubmit)3.0版本开发，因此跟随使用了[Apache License 2.0](https://github.com/xiazhongyv/PKUActionSubmit/blob/master/LICENSE)证书。
 
 本项目提供了Github Actions支持，所以现在你只需要在网页端点点鼠标，无需下载任何文件到你自己的电脑或者服务器，更不需要时刻都开着电脑了。
 
@@ -43,8 +47,10 @@
     再点击右侧New Repository secret，然后添加 SENDKEY（大写的），然后输入你的SENDKEY（如果你不需要微信通知，就随便写点啥都行）
 
     <font size=5>*secret是github的保密字段，在这里填写的内容，在填写后没人能够看到它是什么，包括你自己，你只能修改它。*
+    
+6. 请务必注意修改.github/workflows/main.yml Line 6的corn表达式来更改为你想要的报备频率！当前我的仓库的默认值为北京时间周三四五中午12点。 
 
-6. 然后在【你的ID/PKUAutoSubmit_online】下面那一栏里找到 Actions，点进去，
+7. 然后在【你的ID/PKUAutoSubmit_online】下面那一栏里找到 Actions，点进去，
 
     可能会弹出提示框，点击“Enable...”允许脚本运行，
 
@@ -54,13 +60,15 @@
 
     这个时候，脚本应该已经可以在每天中午十二点都运行一次了，但是推荐手动测试一下，手动测试点击右侧的“Run workflow” - “Run workflow”就可以手动运行一次了。
     
-7. （附加）请手动用浏览器登录一次门户，确保不会有人脸识别授权页面（点击接受或拒绝后便不会再显示该页面）以及微信二维码页面（扫码关注北大信息门户公众号后便不会再弹出该窗口），这两个页面都会干扰程序的正常运行。
+8. （附加）请手动用浏览器登录一次门户，确保不会有人脸识别授权页面（点击接受或拒绝后便不会再显示该页面）以及微信二维码页面（扫码关注北大信息门户公众号后便不会再弹出该窗口），这两个页面都会干扰程序的正常运行。
+    
+
 
 ## 如何修改自动报备的频率
     
 通过修改.github/workflows/main.yml Line 6的corn表达式来实现。
     
-默认值是 '0 4 * * *'，这表示每天UTC 4:00，即北京时间中午12点，执行出校和入校报备各一次。
+默认值是 '0 4 * * 3,4,5'，这表示每周三四五，UTC 4:00，即北京时间周三四五中午12点，执行出校和入校报备各一次。
     
 可以通过编辑单引号内的五个字段来改变报备频率，这五个字段分别表示UTC时间的分钟、小时、日期、月份、星期几，比如 '0 0,2 * * 1,2,3,4,5' 表示周一到周五的北京时间八点和十点执行。有关corn表达式的更多信息，可以自行利用搜索引擎搜索。
 
