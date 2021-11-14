@@ -97,9 +97,17 @@ def select_campus(driver, campus):
             (By.XPATH, f'//li/span[text()="{campus}"]')))
     driver.find_element_by_xpath(f'//li/span[text()="{campus}"]').click()
 
-
-def select_destination(driver, destination):
+    
+def write_reason(driver, reason):
     driver.find_elements_by_class_name('el-select')[2].click()
+    WebDriverWait(driver, 10).until(
+        EC.visibility_of_element_located(
+            (By.XPATH, f'//li/span[text()="{reason}"]')))
+    driver.find_element_by_xpath(f'//li/span[text()="{reason}"]').click()
+    
+    
+def select_destination(driver, destination):
+    driver.find_elements_by_class_name('el-select')[3].click()
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
             (By.XPATH, f'//li/span[text()="{destination}"]')))
@@ -107,7 +115,7 @@ def select_destination(driver, destination):
 
 
 def select_district(driver, district):
-    driver.find_elements_by_class_name('el-select')[3].click()
+    driver.find_elements_by_class_name('el-select')[4].click()
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
             (By.XPATH, f'//li/span[text()="{district}"]')))
@@ -126,11 +134,11 @@ def write_phone_number(driver, phone_number):
     driver.find_elements_by_class_name('el-input__inner')[3].send_keys(
         f'{phone_number}')
     time.sleep(0.1)
-
-
-def write_reason(driver, reason):
+    
+    
+def write_reason_detail(driver, detail):
     driver.find_element_by_class_name('el-textarea__inner').send_keys(
-        f'{reason}')
+        f'{detail}')
     time.sleep(0.1)
 
 
@@ -167,7 +175,7 @@ def submit(driver):
     time.sleep(0.1)
 
 
-def fill_out(driver, campus, mail_address, phone_number, reason, destination, track):
+def fill_out(driver, campus, mail_address, phone_number, reason, detail, destination, track):
     print('开始填报出校备案')
 
     print('选择出校/入校    ', end='')
@@ -189,6 +197,10 @@ def fill_out(driver, campus, mail_address, phone_number, reason, destination, tr
     print('填写出入校事由    ', end='')
     write_reason(driver, reason)
     print('Done')
+    
+    print('填写出入校事由详细描述    ', end='')
+    write_reason_detail(driver, detail)
+    print('Done')
 
     print('选择出校目的地    ', end='')
     select_destination(driver, destination)
@@ -204,7 +216,7 @@ def fill_out(driver, campus, mail_address, phone_number, reason, destination, tr
     print('出校备案填报完毕！')
 
 
-def fill_in(driver, campus, mail_address, phone_number, reason, habitation, district, street):
+def fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street):
     print('开始填报入校备案')
 
     print('选择出校/入校    ', end='')
@@ -225,6 +237,10 @@ def fill_in(driver, campus, mail_address, phone_number, reason, habitation, dist
 
     print('填写出入校事由    ', end='')
     write_reason(driver, reason)
+    print('Done')
+    
+    print('填写出入校事由详细描述    ', end='')
+    write_reason_detail(driver, detail)
     print('Done')
 
     if habitation != '北京':
@@ -273,17 +289,17 @@ def wechat_notification(userName, sckey):
     #     print(str(response['errno']) + ' error: ' + response['errmsg'])
 
 
-def run(driver, userName, password, campus, mail_address, phone_number, reason, destination, track,
+def run(driver, userName, password, campus, mail_address, phone_number, reason, detail, destination, track,
         habitation, district, street, capture, path, wechat, sckey):
     login(driver, userName, password)
     print('=================================')
 
     go_to_application_out(driver)
-    fill_out(driver, campus, mail_address, phone_number, reason, destination, track)
+    fill_out(driver, campus, mail_address, phone_number, reason, detail, destination, track)
     print('=================================')
 
     go_to_application_in(driver, userName, password)
-    fill_in(driver, campus, mail_address, phone_number, reason, habitation, district, street)
+    fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street)
     print('=================================')
 
     if capture:
