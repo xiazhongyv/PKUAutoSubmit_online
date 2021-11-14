@@ -7,6 +7,7 @@
 祝大家科研和学业顺利，也祝大家身体健康！
 
 【11.14更新：报备系统今日更新，原来的程序无法正常运行，请Fetch and merge upstream最新版本或者重新fork最新版本】
+
 【重要提醒：如果你是Fetch and merge upstream了新版本，更新之后请务必不要忘记改config.ini以及workflow下的corn表达式！！】
 
 ## 说明
