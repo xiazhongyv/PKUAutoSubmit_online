@@ -50,7 +50,7 @@
 
     <font size=5>*secret是github的保密字段，在这里填写的内容，在填写后没人能够看到它是什么，包括你自己，你只能修改它。*
     
-6. 当前我的仓库的默认值为每天中午12点，如果你想修改这个频率，请务必注意修改.github/workflows/main.yml Line 6的corn表达式来更改为你想要的报备频率。 
+6. 当前我的仓库的默认值为周三四五中午12点，如果你想修改这个频率，请务必注意修改.github/workflows/main.yml Line 6的corn表达式来更改为你想要的报备频率。 
 
 7. 然后在【你的ID/PKUAutoSubmit_online】下面那一栏里找到 Actions，点进去，
 
