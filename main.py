@@ -2,7 +2,7 @@
 import env_check
 from configparser import ConfigParser
 from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver_manager.chrome import ChromeDriverManager
 from argparse import ArgumentParser
 from func import *
 import warnings
@@ -10,18 +10,6 @@ import sys
 import os
 import re
 warnings.filterwarnings('ignore')
-
-
-def sys_path(browser):
-    path = f'./{browser}/bin/'
-    if sys.platform.startswith('win'):
-        return path + f'{browser}.exe'
-    elif sys.platform.startswith('linux'):
-        return path + f'{browser}'
-    elif sys.platform.startswith('darwin'):
-        return path + f'{browser}'
-    else:
-        raise Exception('暂不支持该系统')
 
 
 def go(config):
