@@ -1,5 +1,4 @@
 # -*- coding: utf-8
-import env_check
 from configparser import ConfigParser
 from selenium.webdriver.chrome.options import Options
 from argparse import ArgumentParser
