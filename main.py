@@ -2,7 +2,7 @@
 import env_check
 from configparser import ConfigParser
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 from argparse import ArgumentParser
 from func import *
 import warnings
