@@ -3,14 +3,28 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from urllib.parse import quote
 from urllib import request
 import os
+import sys
 import time
 import warnings
 import json
 warnings.filterwarnings('ignore')
+
+
+def dropdown_handler(driver, xpath: str):
+    """
+    点击带有滚动条的菜单
+    ref: https://stackoverflow.com/questions/57303355
+    """
+    wait = WebDriverWait(driver, 10)
+    ele = wait.until(EC.visibility_of_element_located((By.XPATH, xpath)))
+    ele.location_once_scrolled_into_view
+    ele.click()
+    time.sleep(0.1)
 
 
 def login(driver, userName, password, retry=0):
@@ -92,10 +106,7 @@ def select_in_out(driver, way):
 
 def select_campus(driver, campus):
     driver.find_elements_by_class_name('el-select')[1].click()
-    WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located(
-            (By.XPATH, f'//li/span[text()="{campus}"]')))
-    driver.find_element_by_xpath(f'//li/span[text()="{campus}"]').click()
+    dropdown_handler(driver, f'//li/span[text()="{campus}"]')
 
     
 def write_reason(driver, reason):
@@ -108,18 +119,12 @@ def write_reason(driver, reason):
     
 def select_destination(driver, destination):
     driver.find_elements_by_class_name('el-select')[3].click()
-    WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located(
-            (By.XPATH, f'//li/span[text()="{destination}"]')))
-    driver.find_element_by_xpath(f'//li/span[text()="{destination}"]').click()
+    dropdown_handler(driver, f'//li/span[text()="{destination}"]')
 
 
 def select_district(driver, district):
     driver.find_elements_by_class_name('el-select')[4].click()
-    WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located(
-            (By.XPATH, f'//li/span[text()="{district}"]')))
-    driver.find_element_by_xpath(f'//li/span[text()="{district}"]').click()
+    dropdown_handler(driver, xpath=f'//li/span[text()="{district}"]')
 
 
 def write_mail_address(driver, mail_address):
@@ -289,18 +294,45 @@ def wechat_notification(userName, sckey):
     #     print(str(response['errno']) + ' error: ' + response['errmsg'])
 
 
+def exception_printer(driver, e: Exception or None):
+    exception_text = []
+    try:
+        # lookup error message on the page
+        exception_text.append(driver.find_element_by_class_name('el-form-item__error').text)
+    except NoSuchElementException:
+        pass
+
+    # print error message
+    print_bold = lambda x: print('\033[1;31m' + x + '\033[0m', file=sys.stderr)
+    print_bold('备案发生错误：')
+    if len(exception_text) > 0:
+        for text in exception_text:
+            # print with bold
+            print_bold(text)
+
+    print_bold('请检查您的配置是否正确，或者稍后重试')
+    print_bold('如果错误依然存在，请在这里汇报Bug：https://github.com/xiazhongyv/PKUAutoSubmit_online/issues')
+    print_bold('错误详细信息：')
+    raise e
+
+
 def run(driver, userName, password, campus, mail_address, phone_number, reason, detail, destination, track,
         habitation, district, street, capture, path, wechat, sckey):
-    login(driver, userName, password)
-    print('=================================')
 
-    go_to_application_out(driver)
-    fill_out(driver, campus, mail_address, phone_number, reason, detail, destination, track)
-    print('=================================')
+    try:
+        login(driver, userName, password)
+        print('=================================')
 
-    go_to_application_in(driver, userName, password)
-    fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street)
-    print('=================================')
+        go_to_application_out(driver)
+        fill_out(driver, campus, mail_address, phone_number, reason, detail, destination, track)
+        print('=================================')
+
+        go_to_application_in(driver, userName, password)
+        fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street)
+        print('=================================')
+    except Exception as e:
+        exception_printer(driver, e)
+        return
 
     if capture:
         screen_capture(driver, path)
