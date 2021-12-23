@@ -12,6 +12,10 @@ import warnings
 import json
 warnings.filterwarnings('ignore')
 
+import sys
+import traceback
+from selenium.common.exceptions import NoSuchElementException
+
 
 def login(driver, userName, password, retry=0):
     if retry == 3:
@@ -289,18 +293,47 @@ def wechat_notification(userName, sckey):
     #     print(str(response['errno']) + ' error: ' + response['errmsg'])
 
 
+def exception_printer(driver, e: Exception or None):
+    exception_text = []
+    try:
+        # lookup error message on the page
+        exception_text.append(driver.find_element_by_class_name('el-form-item__error').text)
+    except NoSuchElementException:
+        pass
+
+    # print error message
+    if len(exception_text) > 0:
+        print('报备发生错误：', file=sys.stderr)
+        for text in exception_text:
+            # print with bold
+            print('\033[1m' + text + '\033[0m', file=sys.stderr)
+
+    # print exception
+    if e is not None:
+        print('错误详细信息：', file=sys.stderr)
+        traceback.print_exc()
+
+    print('请检查您的配置是否正确，或者稍后重试', file=sys.stderr)
+    print('如果错误依然存在，请在这里汇报Bug：https://github.com/xiazhongyv/PKUAutoSubmit_online/issues', file=sys.stderr)
+
+
 def run(driver, userName, password, campus, mail_address, phone_number, reason, detail, destination, track,
         habitation, district, street, capture, path, wechat, sckey):
-    login(driver, userName, password)
-    print('=================================')
 
-    go_to_application_out(driver)
-    fill_out(driver, campus, mail_address, phone_number, reason, detail, destination, track)
-    print('=================================')
+    try:
+        login(driver, userName, password)
+        print('=================================')
 
-    go_to_application_in(driver, userName, password)
-    fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street)
-    print('=================================')
+        go_to_application_out(driver)
+        fill_out(driver, campus, mail_address, phone_number, reason, detail, destination, track)
+        print('=================================')
+
+        go_to_application_in(driver, userName, password)
+        fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street)
+        print('=================================')
+    except Exception as e:
+        exception_printer(driver, e)
+        return
 
     if capture:
         screen_capture(driver, path)
