@@ -9,7 +9,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from argparse import ArgumentParser
-from func import *
 import re
 from urllib.parse import quote
 from urllib import request
