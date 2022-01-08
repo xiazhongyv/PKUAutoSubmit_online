@@ -6,9 +6,7 @@
 
 祝大家科研和学业顺利，也祝大家身体健康！
 
-【11.26更新：Github Actions环境的Chrome更新了，旧版本不能用了，请大家Fetch and merge upstream最新版本。现在更新为了使用最新driver，以后不会再出现driver版本的问题了~】
-
-【重要提醒：如果你是Fetch and merge upstream了新版本，更新之后请务必不要忘记改config.ini以及workflow下的corn表达式！！】
+【重要提醒：克隆或更新本仓库之后请务必不要忘记改config.ini以及workflow下的corn表达式！！】
 
 ## 说明
 
