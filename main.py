@@ -271,22 +271,6 @@ def fill_in(driver, campus, mail_address, phone_number, reason, detail, habitati
     print('入校备案填报完毕！')
 
 
-def screen_capture(driver, path):
-    driver.back()
-    time.sleep(0.5)
-    driver.back()
-    WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located((By.CLASS_NAME, 'el-card__body')))
-    driver.find_elements_by_class_name('el-card__body')[1].click()
-    WebDriverWait(driver, 10).until(
-        EC.visibility_of_element_located(
-            (By.XPATH, '//div[contains(text(),"已提交")]')))
-    driver.maximize_window()
-    time.sleep(0.1)
-    driver.save_screenshot(os.path.join(path, 'result.png'))
-    print('备案历史截图已保存')
-
-
 def wechat_notification(userName, sckey):
     with request.urlopen(
             quote('https://sctapi.ftqq.com/' + sckey + '.send?title=成功报备&desp=学号' +
@@ -322,7 +306,7 @@ def exception_printer(driver, e: Exception or None):
 
 
 def run(driver, userName, password, campus, mail_address, phone_number, reason, detail, destination, track,
-        habitation, district, street, capture, path, wechat, sckey):
+        habitation, district, street, wechat, sckey):
 
     try:
         login(driver, userName, password)
@@ -339,10 +323,6 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
         exception_printer(driver, e)
         return
 
-    if capture:
-        screen_capture(driver, path)
-        print('=================================')
-
     if wechat:
         wechat_notification(userName, sckey)
         print('=================================')
@@ -356,12 +336,10 @@ def go(config):
     campus, reason, detail = dict(conf['common']).values()
     destination, track = dict(conf['out']).values()
     habitation, district, street = dict(conf['in']).values()
-    capture = conf.getboolean('capture', '是否需要备案历史截图')
-    path = conf['capture']['截图保存路径']
     wechat = conf.getboolean('wechat', '是否需要微信通知')
 
     run(driver_pjs, argconf.ID, argconf.PASSWORD, campus, argconf.MAIL_ADDRESS, argconf.PHONE_NUMBER, reason, detail, destination, track,
-        habitation, district, street, capture, path, wechat, argconf.SENDKEY)
+        habitation, district, street, wechat, argconf.SENDKEY)
 
 
 if __name__ == '__main__':
