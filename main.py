@@ -277,10 +277,6 @@ def wechat_notification(userName, sckey):
                   str(userName) + '成功报备',
                   safe='/:?=&')) as response:
         response = json.loads(response.read().decode('utf-8'))
-    # if response['error'] == 'SUCCESS':
-    #     print('微信通知成功！')
-    # else:
-    #     print(str(response['errno']) + ' error: ' + response['errmsg'])
 
 
 def exception_printer(driver, e: Exception or None):
@@ -325,7 +321,6 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
 
     if wechat:
         wechat_notification(userName, sckey)
-        print('=================================')
 
     print('报备成功！\n')
 
