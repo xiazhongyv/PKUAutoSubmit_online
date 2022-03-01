@@ -296,7 +296,6 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
         except Exception as e:
             exception_printer(driver, e)
             print("！！ 报备失败 ！！")
-            return
 
     if is_success:
         if wechat:
