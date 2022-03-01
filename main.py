@@ -111,7 +111,7 @@ def select_in_out(driver, way):
 
 
 def select_campus(driver, campus):
-    driver.find_elements_by_class_name('el-selecthhhhhhhh')[1].click()
+    driver.find_elements_by_class_name('el-selecthhhhhh')[1].click()
     dropdown_handler(driver, f'//li/span[text()="{campus}"]')
 
 
@@ -277,6 +277,7 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
 
     for try_times in range(5):
         try:
+            print("======= 第", try_times, "次报备尝试 =======")
             login(driver, userName, password)
             print('---------------------------------')
 
@@ -288,16 +289,13 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
             fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street)
             print('---------------------------------')
 
-            print('-= 报备成功！=-\n')
+            print('-= 报备成功 =-')
             is_success = True
             break
 
         except Exception as e:
             exception_printer(driver, e)
-            if try_times < 4:
-                print("======= 第", try_times + 1, "次重试中 =======")
-            else:
-                print("!!!!!!! 多次重试失败，报备失败 !!!!!!!")
+            print("！！ 报备失败 ！！")
             return
 
     if is_success:
@@ -305,6 +303,7 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
             wechat_notification_success(userName, sckey)
     else:
         print_bold = lambda x: print('\033[1;31m' + x + '\033[0m', file=sys.stderr)
+        print_bold("!!!!!!! 多次重试失败，报备失败 !!!!!!!")
         print_bold('请检查您的配置是否正确，或者稍后重试')
         print_bold('如果错误依然存在，请在这里汇报Bug：https://github.com/xiazhongyv/PKUAutoSubmit_online/issues')
         if wechat:
