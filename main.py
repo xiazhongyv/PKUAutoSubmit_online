@@ -111,12 +111,12 @@ def select_in_out(driver, way):
 
 
 def select_campus(driver, campus):
-    driver.find_elements_by_class_name('el-selecthhhhhh')[1].click()
+    driver.find_elements_by_class_name('el-select')[1].click()
     dropdown_handler(driver, f'//li/span[text()="{campus}"]')
 
 
 def write_reason(driver, reason):
-    driver.find_elements_by_class_name('el-select')[2].click()
+    driver.find_elements_by_class_name('el-selectededed')[2].click()
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
             (By.XPATH, f'//li/span[text()="{reason}"]')))
@@ -251,21 +251,9 @@ def wechat_notification_failed(userName, sckey):
         response = json.loads(response.read().decode('utf-8'))
 
 
-def exception_printer(driver, e: Exception or None):
-    exception_text = []
-    try:
-        exception_text.append(driver.find_element_by_class_name('el-form-item__error').text)
-    except NoSuchElementException:
-        pass
-
+def exception_printer(e: Exception or None):
     print_bold = lambda x: print('\033[1;31m' + x + '\033[0m', file=sys.stderr)
-    print_bold('备案发生错误：')
-    if len(exception_text) > 0:
-        for text in exception_text:
-            print_bold(text)
-
-    print_bold = lambda x: print('\033[1;31m' + x + '\033[0m', file=sys.stderr)
-    print_bold("!!!!!!! 多次重试失败，报备失败 !!!!!!!")
+    print_bold("多次重试失败，报备失败")
     print_bold('请检查您的配置是否正确，或者稍后重试')
     print_bold('如果错误依然存在，请在这里汇报Bug：https://github.com/xiazhongyv/PKUAutoSubmit_online/issues')
     print_bold('错误详细信息：')
@@ -279,16 +267,10 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
         try:
             print("======= 第", try_times, "次报备尝试 =======")
             login(driver, userName, password)
-            print('---------------------------------')
-
             go_to_application_out(driver)
             fill_out(driver, campus, mail_address, phone_number, reason, detail, destination, track)
-            print('---------------------------------')
-
             go_to_application_in(driver, userName, password)
             fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street)
-            print('---------------------------------')
-
             print('\n报备成功')
             break
 
@@ -297,7 +279,7 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
             if try_times == 4:
                 if wechat:
                     wechat_notification_failed(userName, sckey)
-                exception_printer(driver, e)
+                exception_printer(e)
 
     if wechat:
         wechat_notification_success(userName, sckey)
