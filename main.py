@@ -116,7 +116,7 @@ def select_campus(driver, campus):
 
 
 def write_reason(driver, reason):
-    driver.find_elements_by_class_name('el-selectededed')[2].click()
+    driver.find_elements_by_class_name('el-select')[2].click()
     WebDriverWait(driver, 10).until(
         EC.visibility_of_element_located(
             (By.XPATH, f'//li/span[text()="{reason}"]')))
@@ -265,7 +265,7 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
 
     for try_times in range(5):
         try:
-            print("======= 第", try_times, "次报备尝试 =======")
+            print("======= 第", try_times + 1, "次报备尝试 =======")
             login(driver, userName, password)
             go_to_application_out(driver)
             fill_out(driver, campus, mail_address, phone_number, reason, detail, destination, track)
