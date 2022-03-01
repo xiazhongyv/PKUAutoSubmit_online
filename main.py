@@ -111,7 +111,7 @@ def select_in_out(driver, way):
 
 
 def select_campus(driver, campus):
-    driver.find_elements_by_class_name('el-select')[1].click()
+    driver.find_elements_by_class_name('el-selecthhhhhhhh')[1].click()
     dropdown_handler(driver, f'//li/span[text()="{campus}"]')
 
 
