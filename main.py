@@ -258,22 +258,22 @@ def exception_printer(driver, e: Exception or None):
     except NoSuchElementException:
         pass
 
-    # print error message
     print_bold = lambda x: print('\033[1;31m' + x + '\033[0m', file=sys.stderr)
     print_bold('备案发生错误：')
     if len(exception_text) > 0:
         for text in exception_text:
-            # print with bold
             print_bold(text)
 
+    print_bold = lambda x: print('\033[1;31m' + x + '\033[0m', file=sys.stderr)
+    print_bold("!!!!!!! 多次重试失败，报备失败 !!!!!!!")
+    print_bold('请检查您的配置是否正确，或者稍后重试')
+    print_bold('如果错误依然存在，请在这里汇报Bug：https://github.com/xiazhongyv/PKUAutoSubmit_online/issues')
     print_bold('错误详细信息：')
-    # raise e
+    raise e
 
 
 def run(driver, userName, password, campus, mail_address, phone_number, reason, detail, destination, track,
         habitation, district, street, wechat, sckey):
-
-    is_success = False
 
     for try_times in range(5):
         try:
@@ -289,24 +289,18 @@ def run(driver, userName, password, campus, mail_address, phone_number, reason, 
             fill_in(driver, campus, mail_address, phone_number, reason, detail, habitation, district, street)
             print('---------------------------------')
 
-            print('-= 报备成功 =-')
-            is_success = True
+            print('\n报备成功')
             break
 
         except Exception as e:
-            exception_printer(driver, e)
-            print("！！ 报备失败 ！！")
+            print("\n报备失败")
+            if try_times == 4:
+                if wechat:
+                    wechat_notification_failed(userName, sckey)
+                exception_printer(driver, e)
 
-    if is_success:
-        if wechat:
-            wechat_notification_success(userName, sckey)
-    else:
-        print_bold = lambda x: print('\033[1;31m' + x + '\033[0m', file=sys.stderr)
-        print_bold("!!!!!!! 多次重试失败，报备失败 !!!!!!!")
-        print_bold('请检查您的配置是否正确，或者稍后重试')
-        print_bold('如果错误依然存在，请在这里汇报Bug：https://github.com/xiazhongyv/PKUAutoSubmit_online/issues')
-        if wechat:
-            wechat_notification_failed(userName, sckey)
+    if wechat:
+        wechat_notification_success(userName, sckey)
 
 
 if __name__ == '__main__':
