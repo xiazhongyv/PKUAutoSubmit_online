@@ -111,7 +111,7 @@ def select_in_out(driver, way):
 
 
 def select_campus(driver, campus):
-    driver.find_elements_by_class_name('el-selecthhhhhhhhhhhhh')[1].click()
+    driver.find_elements_by_class_name('el-select')[1].click()
     dropdown_handler(driver, f'//li/span[text()="{campus}"]')
 
 
@@ -254,7 +254,6 @@ def wechat_notification_failed(userName, sckey):
 def exception_printer(driver, e: Exception or None):
     exception_text = []
     try:
-        # lookup error message on the page
         exception_text.append(driver.find_element_by_class_name('el-form-item__error').text)
     except NoSuchElementException:
         pass
@@ -268,7 +267,7 @@ def exception_printer(driver, e: Exception or None):
             print_bold(text)
 
     print_bold('错误详细信息：')
-    raise e
+    # raise e
 
 
 def run(driver, userName, password, campus, mail_address, phone_number, reason, detail, destination, track,
